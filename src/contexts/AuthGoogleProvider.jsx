@@ -1,13 +1,63 @@
 import { createContext, useEffect, useState } from "react";
 import { GoogleAuthProvider, signInWithPopup, signOut } from 'firebase/auth'
-import { auth } from '../services/firebase';
+import { auth, db } from '../services/firebase';
+import { collection, getDocs, setDoc, addDoc, updateDoc, deleteDoc, doc } from 'firebase/firestore';
+
+import { onAuthStateChanged } from "firebase/auth";
+
 
 const provider = new GoogleAuthProvider();
 
 export const AuthGoogleContext = createContext({});
 
 export const AuthGoogleProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState({});
+  const [users, setUsers] = useState({});
+  const [userId, setUserId] = useState("");
+  const usersCollectionRef = collection(db, "users");
+
+  console.log(users)
+  // console.log(typeof userId)
+  // console.log({"usuário 2": users[2], "userId": userId})
+
+  function userAlreadyExists() {
+    if(users.find(data => data.id === userId)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  useEffect(() => {
+    const getUsers = async () => {
+      const data = await getDocs(usersCollectionRef);
+      setUsers(data.docs.map(doc => doc.id));
+    }
+    getUsers();
+  }, [])
+
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      // console.log(user.uid)
+      setUserId(user.uid)
+      // userAlreadyExists();
+    } else {
+      console.log(`${user} is sign out`)
+    }
+  })
+
+  // User Data
+  // useEffect(() => {
+  //   if(user === {}) {
+  //     return;
+  //   } else {
+  //     const getUsers = async () => {
+  //       const data = await getDocs(usersCollectionRef);
+  //       setUsers(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+  //     }
+  //     getUsers();
+  //   }
+  // }, [])
 
   useEffect(() => {
     const loadStoreAuth = () => {
@@ -21,15 +71,22 @@ export const AuthGoogleProvider = ({ children }) => {
     loadStoreAuth();
   })
   
-  function handleGoogleSignIn() {
-    signInWithPopup(auth, provider)
+  async function handleGoogleSignIn() {
+
+    await signInWithPopup(auth, provider)
     .then((result) => {
       const credential = GoogleAuthProvider.credentialFromResult(result);
       const token = credential.accessToken;
       const user = result.user;
-      setUser(user);
-      sessionStorage.setItem("@AuthFirebase:token", token);
-      sessionStorage.setItem("@AuthFirebase:user", JSON.stringify(user));
+      setUserId(result.user.uid)
+
+      // const docRef = doc(db, "users", result.user.uid);
+
+      // setDoc(docRef, {});
+
+      // setUser(user);
+      // sessionStorage.setItem("@AuthFirebase:token", token);
+      // sessionStorage.setItem("@AuthFirebase:user", JSON.stringify(user));
     })
     .catch((error) => {
       const errorCode = error.code;
