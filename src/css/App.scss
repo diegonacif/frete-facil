@@ -1,0 +1,42 @@
+$primary-font: 'Urbanist', sans-serif;
+
+// Media Variables
+$mobile-size: "min-width: 320px";
+$tablet-size: "min-width: 600px";
+$notebook-size: "min-width: 1024px";
+$desktop-size: "min-width: 1280px";
+
+@mixin responsive-padding($pt: 0, $pb: 0) {
+  padding: $pt 1rem $pb;
+
+  @media only screen and ($tablet-size) {
+    padding: $pt 4rem $pb;
+  }
+  @media only screen and ($notebook-size) {
+    padding: $pt 6rem $pb;
+  }
+  @media only screen and ($desktop-size) {
+    padding: $pt calc(8rem + 5vw) $pb;
+  }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: $primary-font;
+  -webkit-tap-highlight-color: transparent; // remove color highlight on tap
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  &:focus-visible, &:focus-within, &:focus, &:active, &:target {
+    border: 0;
+    outline: 0;
+    background-color: transparent;
+  }
+}
+
+// Module Imports
+@import '../pages/Login/Login';

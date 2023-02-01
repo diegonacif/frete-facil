@@ -1,0 +1,5 @@
+.login-container {
+  @include responsive-padding;
+  display: flex;
+  flex-direction: column;
+}

@@ -1,0 +1,38 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Urbanist", sans-serif;
+  -webkit-tap-highlight-color: transparent;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+a:focus-visible, a:focus-within, a:focus, a:active, a:target {
+  border: 0;
+  outline: 0;
+  background-color: transparent;
+}
+
+.login-container {
+  padding: 0 1rem 0;
+  display: flex;
+  flex-direction: column;
+}
+@media only screen and (min-width: 600px) {
+  .login-container {
+    padding: 0 4rem 0;
+  }
+}
+@media only screen and (min-width: 1024px) {
+  .login-container {
+    padding: 0 6rem 0;
+  }
+}
+@media only screen and (min-width: 1280px) {
+  .login-container {
+    padding: 0 calc(8rem + 5vw) 0;
+  }
+}/*# sourceMappingURL=App.css.map */
