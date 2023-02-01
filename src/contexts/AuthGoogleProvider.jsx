@@ -1,10 +1,8 @@
 import { createContext, useEffect, useState } from "react";
-import { GoogleAuthProvider, signInWithPopup, signOut } from 'firebase/auth'
+import { GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged } from 'firebase/auth'
 import { auth, db } from '../services/firebase';
 import { collection, getDocs, setDoc, addDoc, updateDoc, deleteDoc, doc } from 'firebase/firestore';
-
-import { onAuthStateChanged } from "firebase/auth";
-
+import { useAuthState } from 'react-firebase-hooks/auth';
 
 const provider = new GoogleAuthProvider();
 
@@ -14,11 +12,11 @@ export const AuthGoogleProvider = ({ children }) => {
   const [user, setUser] = useState({});
   const [users, setUsers] = useState({});
   const [userId, setUserId] = useState("");
-  const usersCollectionRef = collection(db, "users");
 
-  console.log(users)
-  // console.log(typeof userId)
-  // console.log({"usuário 2": users[2], "userId": userId})
+  const [isLoading, setIsLoading] = useState(true);
+  const [isSignedIn, setIsSignedIn] = useState(false);
+
+  const usersCollectionRef = collection(db, "users");
 
   function userAlreadyExists() {
     if(users.find(data => data.id === userId)) {
@@ -36,13 +34,16 @@ export const AuthGoogleProvider = ({ children }) => {
     getUsers();
   }, [])
 
-  onAuthStateChanged(auth, (user) => {
-    if (user) {
-      // console.log(user.uid)
-      setUserId(user.uid)
-      // userAlreadyExists();
+  const [userState, loading, error] = useAuthState(auth);
+
+  onAuthStateChanged(auth, (currentUser) => {
+    if (loading) {
+      console.log("loading user state")
+      setIsLoading(true);
     } else {
-      console.log(`${user} is sign out`)
+      setUser(currentUser);
+      setIsSignedIn(!!currentUser);
+      setIsLoading(false);
     }
   })
 
@@ -103,7 +104,14 @@ export const AuthGoogleProvider = ({ children }) => {
   }
 
   return (
-    <AuthGoogleContext.Provider value={{ handleGoogleSignIn, handleGoogleSignOut, signed: !!user, user }}>
+    <AuthGoogleContext.Provider value={{ 
+      handleGoogleSignIn, 
+      handleGoogleSignOut,
+      isLoading,
+      isSignedIn,
+      signed: !!user, 
+      user 
+    }}>
       {children}
     </AuthGoogleContext.Provider>
   )
