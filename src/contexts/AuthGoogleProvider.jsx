@@ -99,7 +99,7 @@ export const AuthGoogleProvider = ({ children }) => {
 
   function handleGoogleSignOut() {
     sessionStorage.clear();
-    setUser(null);
+    // setUser(null);
     signOut(auth).then(() => console.log("sign out sucessfully"));
   }
 
