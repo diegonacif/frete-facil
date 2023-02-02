@@ -11,6 +11,7 @@ export const App = () => {
     <>
       <h1>Hello App</h1>
       <Link to="/login">Login</Link>
+      <Link to="/management">Management</Link>
       <button onClick={() => handleGoogleSignOut()}>Sign Out</button>
     </>
   )

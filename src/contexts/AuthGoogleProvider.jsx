@@ -18,13 +18,13 @@ export const AuthGoogleProvider = ({ children }) => {
 
   const usersCollectionRef = collection(db, "users");
 
-  function userAlreadyExists() {
-    if(users.find(data => data.id === userId)) {
-      return true;
-    } else {
-      return false;
-    }
-  }
+  // function userAlreadyExists() {
+  //   if(users.find(data => data.id === userId)) {
+  //     return true;
+  //   } else {
+  //     return false;
+  //   }
+  // }
 
   useEffect(() => {
     const getUsers = async () => {
@@ -43,6 +43,7 @@ export const AuthGoogleProvider = ({ children }) => {
     } else {
       setUser(currentUser);
       setIsSignedIn(!!currentUser);
+      setUserId(userState?.uid)
       setIsLoading(false);
     }
   })
@@ -79,7 +80,7 @@ export const AuthGoogleProvider = ({ children }) => {
       const credential = GoogleAuthProvider.credentialFromResult(result);
       const token = credential.accessToken;
       const user = result.user;
-      setUserId(result.user.uid)
+      // setUserId(result.user.uid)
 
       // const docRef = doc(db, "users", result.user.uid);
 
@@ -109,6 +110,7 @@ export const AuthGoogleProvider = ({ children }) => {
       handleGoogleSignOut,
       isLoading,
       isSignedIn,
+      userId,
       signed: !!user, 
       user 
     }}>
