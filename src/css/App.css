@@ -2,7 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Urbanist", sans-serif;
+  font-family: "Bree Serif", serif;
   -webkit-tap-highlight-color: transparent;
 }
 
@@ -35,4 +35,57 @@ a:focus-visible, a:focus-within, a:focus, a:active, a:target {
   .login-container {
     padding: 0 calc(8rem + 5vw) 0;
   }
+}
+
+.header-container {
+  padding: 0 1rem 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100vw;
+  height: 4rem;
+  background-color: #D4B889;
+}
+@media only screen and (min-width: 600px) {
+  .header-container {
+    padding: 0 4rem 0;
+  }
+}
+@media only screen and (min-width: 1024px) {
+  .header-container {
+    padding: 0 6rem 0;
+  }
+}
+@media only screen and (min-width: 1280px) {
+  .header-container {
+    padding: 0 calc(8rem + 5vw) 0;
+  }
+}
+
+.cards-container-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem 0;
+}
+
+.card-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  max-width: 30rem;
+  padding: 0.75rem;
+  row-gap: 0.25rem;
+  border-radius: 12px;
+  box-shadow: 0px 4px 8px 1px rgba(0, 0, 0, 0.2);
+}
+.card-container:not(:first-of-type) {
+  margin-top: 1rem;
+}
+.card-container img {
+  width: 2.5rem;
 }/*# sourceMappingURL=App.css.map */

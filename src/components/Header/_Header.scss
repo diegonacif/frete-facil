@@ -1,0 +1,9 @@
+.header-container {
+  @include responsive-padding;
+  @include flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100vw;
+  height: 4rem;
+  background-color: $brown-500;
+}

@@ -1,4 +1,13 @@
-$primary-font: 'Urbanist', sans-serif;
+$primary-font: 'Bree Serif', serif;
+
+// Color Palette
+$black-900: #0f0f0f;
+$gray-900: #36353A;
+$gray-800: #707173;
+$brown-700: #B48456;
+$brown-500: #D4B889;
+$brown-200: #EFEAD6;
+$white-100: #f0f0f0;
 
 // Media Variables
 $mobile-size: "min-width: 320px";
@@ -18,6 +27,11 @@ $desktop-size: "min-width: 1280px";
   @media only screen and ($desktop-size) {
     padding: $pt calc(8rem + 5vw) $pb;
   }
+}
+
+@mixin flex($direction: row) {
+  display: flex;
+  flex-direction: $direction;
 }
 
 * {
@@ -40,3 +54,6 @@ a {
 
 // Module Imports
 @import '../pages/Login/Login';
+@import '../components/Header/Header';
+@import '../components/CardsContainer/CardsContainer';
+@import '../components/Card/Card';

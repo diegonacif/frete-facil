@@ -54,12 +54,6 @@ export const Management = () => {
     }
   }, [IdsArray])
 
-  // console.log({
-  //   "registered": alreadyRegistered,
-  //   "loading": firestoreLoading,
-  //   "id": userId
-  // });
-
   // Create user data
   async function registerUser() {
     const docRef = doc(db, "users", userId);
@@ -108,11 +102,6 @@ export const Management = () => {
     }
     getCurrentData();
   }, [firestoreLoading])
-
-  // console.log({
-  //   "users": users,
-  //   "ids": IdsArray
-  // });
 
   return (
     <div className="management-container">

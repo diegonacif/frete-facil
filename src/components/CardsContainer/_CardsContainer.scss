@@ -1,0 +1,7 @@
+.cards-container-container {
+  @include flex(column);
+  align-items: center;
+  padding: 2rem 0;
+  // row-gap: 1rem;
+
+}
