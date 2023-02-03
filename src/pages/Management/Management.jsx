@@ -1,4 +1,4 @@
-import { collection, doc, getDocs, setDoc } from "firebase/firestore";
+import { collection, doc, getDocs, setDoc, updateDoc } from "firebase/firestore";
 import { useContext, useEffect, useState } from "react";
 import { AuthGoogleContext } from "../../contexts/AuthGoogleProvider";
 import { db } from '../../services/firebase';
@@ -22,7 +22,7 @@ export const Management = () => {
     setValue,
     getValues
   } = useForm({
-    mode: "all"
+    mode: "all",
   });
   
   // Firestore loading
@@ -60,14 +60,15 @@ export const Management = () => {
   //   "id": userId
   // });
 
-  // Create a new user in firestore
+  // Create user data
   async function registerUser() {
     const docRef = doc(db, "users", userId);
 
     return await setDoc(docRef, {
       displayName: watch("displayName"),
       phone: watch("phoneNumber"),
-      category: watch("vehicleCategory")
+      size: watch("vehicleSize"),
+      isCovered: watch("covered"),
     })
     .then(
       setRefresh((current) => !current),
@@ -75,14 +76,51 @@ export const Management = () => {
     )
   }
 
-  // console.log(users);
+  // Update user data
+  async function updateUser() {
+    const docRef = doc(db, "users", userId);
+
+    return await updateDoc(docRef, {
+      displayName: watch("displayName"),
+      phone: watch("phoneNumber"),
+      size: watch("vehicleSize"),
+      isCovered: watch("covered"),
+    })
+    .then(
+      setRefresh((current) => !current),
+      console.log("Updated"),
+      setTimeout(() => {
+        window.location.replace("/")
+      }, 600)
+    )
+  }
+
+  // Get Data from current user
+  
+  useEffect(() => {
+    async function getCurrentData() {
+      const currentId = await IdsArray?.indexOf(userId)
+      // console.log(users[currentId])
+      setValue("displayName", users[currentId]?.displayName)
+      setValue("phoneNumber", users[currentId]?.phone)
+      setValue("vehicleSize", users[currentId]?.size)
+      setValue("covered", users[currentId]?.isCovered)
+    }
+    getCurrentData();
+  }, [firestoreLoading])
+
+  // console.log({
+  //   "users": users,
+  //   "ids": IdsArray
+  // });
 
   return (
     <div className="management-container">
       <h1>Management</h1>
-      {
+      { 
+        firestoreLoading ?
+        <span>Loading</span> :
         alreadyRegistered ?
-        <span>Edição de dados</span> :
         <>
           <input 
             type="text" 
@@ -97,7 +135,36 @@ export const Management = () => {
           <input 
             type="text" 
             placeholder="tipo de veículo..." 
-            {...register("vehicleCategory")}
+            {...register("vehicleSize")}
+          />
+          <input 
+            type="text" 
+            placeholder="coberto..." 
+            {...register("covered")}
+          />
+          
+          <button onClick={() => updateUser()}>Atualizar</button>
+        </> :
+        <>
+          <input 
+            type="text" 
+            placeholder="nome..." 
+            {...register("displayName")}
+          />
+          <input 
+            type="text" 
+            placeholder="telefone..." 
+            {...register("phoneNumber")}
+          />
+          <input 
+            type="text" 
+            placeholder="tipo de veículo..." 
+            {...register("vehicleSize")}
+          />
+          <input 
+            type="text" 
+            placeholder="coberto..." 
+            {...register("covered")}
           />
           
           <button onClick={() => registerUser()}>Registrar</button>
