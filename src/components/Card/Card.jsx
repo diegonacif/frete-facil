@@ -40,7 +40,7 @@ export const Card = ({ displayName, phone, category, covered }) => {
           <div className="b-side">
             <div className="card-row">
               <span>Informações adicionais:</span>
-              <textarea>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos sint in voluptas rerum doloremque quisquam tempora, voluptate porro provident nemo id quidem, earum quis ea, labore modi ipsum non ad?</textarea>
+              <textarea readOnly>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos sint in voluptas rerum doloremque quisquam tempora, voluptate porro provident nemo id quidem, earum quis ea, labore modi ipsum non ad?</textarea>
             </div>
           </div>
         </>

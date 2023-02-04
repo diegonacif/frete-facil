@@ -4,6 +4,9 @@ import { AuthGoogleContext } from "../../contexts/AuthGoogleProvider";
 import { db } from '../../services/firebase';
 import { useCollection } from 'react-firebase-hooks/firestore';
 import { useForm } from 'react-hook-form';
+import { Header } from '../../components/Header/Header';
+
+import "../../css/App.css";
 
 export const Management = () => {
   const usersCollectionRef = collection(db, "users");
@@ -105,12 +108,13 @@ export const Management = () => {
 
   return (
     <div className="management-container">
-      <h1>Management</h1>
+      <Header />
       { 
         firestoreLoading ?
         <span>Loading</span> :
         alreadyRegistered ?
-        <>
+        <div className="management-content">
+          <h3>Dados do seu anúncio</h3>
           <input 
             type="text" 
             placeholder="nome..." 
@@ -123,17 +127,22 @@ export const Management = () => {
           />
           <input 
             type="text" 
-            placeholder="tipo de veículo..." 
+            placeholder="tamanho do veículo..." 
             {...register("vehicleSize")}
           />
           <input 
             type="text" 
             placeholder="coberto..." 
             {...register("covered")}
+          />
+          <input 
+            type="text" 
+            placeholder="informações adicionais..." 
+            {...register("additionalInfo")}
           />
           
           <button onClick={() => updateUser()}>Atualizar</button>
-        </> :
+        </div> :
         <>
           <input 
             type="text" 
@@ -147,13 +156,18 @@ export const Management = () => {
           />
           <input 
             type="text" 
-            placeholder="tipo de veículo..." 
+            placeholder="tamanho do veículo..." 
             {...register("vehicleSize")}
           />
           <input 
             type="text" 
             placeholder="coberto..." 
             {...register("covered")}
+          />
+          <input 
+            type="text" 
+            placeholder="informações adicionais..." 
+            {...register("additionalInfo")}
           />
           
           <button onClick={() => registerUser()}>Registrar</button>

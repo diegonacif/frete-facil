@@ -91,6 +91,58 @@ a:focus-visible, a:focus-within, a:focus, a:active, a:target {
   cursor: pointer;
 }
 
+.management-container {
+  display: flex;
+  flex-direction: column;
+  background-color: #f0f0f0;
+  height: 100vh;
+}
+.management-container .management-content {
+  display: flex;
+  flex-direction: column;
+  padding: 0 1rem 0;
+  align-items: center;
+  margin-top: 3rem;
+}
+@media only screen and (min-width: 600px) {
+  .management-container .management-content {
+    padding: 0 4rem 0;
+  }
+}
+@media only screen and (min-width: 1024px) {
+  .management-container .management-content {
+    padding: 0 6rem 0;
+  }
+}
+@media only screen and (min-width: 1280px) {
+  .management-container .management-content {
+    padding: 0 calc(8rem + 5vw) 0;
+  }
+}
+.management-container .management-content input {
+  width: 100%;
+  height: 1.875rem;
+  max-width: 20rem;
+  border-radius: 8px;
+  border: 0;
+  padding: 0 0.5rem;
+  box-shadow: 0px 3px 6px 1px rgba(0, 0, 0, 0.2);
+}
+.management-container .management-content input:first-of-type {
+  margin-top: 1rem;
+}
+.management-container .management-content input:not(:first-of-type) {
+  margin-top: 0.5rem;
+}
+.management-container .management-content button {
+  height: 1.75rem;
+  width: 6rem;
+  margin-top: 1rem;
+  border: 0;
+  border-radius: 8px;
+  background-color: #D4B889;
+}
+
 .header-container {
   padding: 0 1rem 0;
   display: flex;
