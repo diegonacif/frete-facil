@@ -1,5 +1,6 @@
 .cards-container-container {
   @include flex(column);
+  @include responsive-padding(2rem, 2rem);
   align-items: center;
-  padding: 2rem 0;
+  // padding: 2rem 0;
 }

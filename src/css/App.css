@@ -202,8 +202,23 @@ a:focus-visible, a:focus-within, a:focus, a:active, a:target {
 .cards-container-container {
   display: flex;
   flex-direction: column;
+  padding: 2rem 1rem 2rem;
   align-items: center;
-  padding: 2rem 0;
+}
+@media only screen and (min-width: 600px) {
+  .cards-container-container {
+    padding: 2rem 4rem 2rem;
+  }
+}
+@media only screen and (min-width: 1024px) {
+  .cards-container-container {
+    padding: 2rem 6rem 2rem;
+  }
+}
+@media only screen and (min-width: 1280px) {
+  .cards-container-container {
+    padding: 2rem calc(8rem + 5vw) 2rem;
+  }
 }
 
 .card-container {
