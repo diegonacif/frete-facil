@@ -33,7 +33,7 @@ export const Management = () => {
     setFirestoreLoading(loading);
   }, [loading])
 
-   // Users Data
+  // Users Data
   useEffect(() => {
     const getUsers = async () => {
       const data = await getDocs(usersCollectionRef);

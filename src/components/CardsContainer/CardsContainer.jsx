@@ -8,7 +8,6 @@ export const CardsContainer = () => {
   const usersCollectionRef = collection(db, "users");
   const [users, setUsers] = useState({})
   const [firestoreLoading, setFirestoreLoading] = useState(true);
-  // console.log(users)
 
   // Users Data
   useEffect(() => {
@@ -31,7 +30,7 @@ export const CardsContainer = () => {
     <div className="cards-container-container">
       { 
         firestoreLoading ?
-        console.log("loading") :
+        null :
         users?.map((user) => {
           return (
             <Card

@@ -6,4 +6,32 @@
   width: 100vw;
   height: 4rem;
   background-color: $brown-500;
+
+  .header-wrapper {
+    @include flex;
+    position: relative;
+    align-items: center;
+    width: fit-content;
+    gap: 1rem;
+
+    .menu-modal {
+      position: absolute;
+      @include flex(column);
+      align-items: center;
+      width: max-content;
+      top: 4rem;
+      right: 2rem;
+      background-color: $brown-200;
+      padding: 0.75rem;
+      border-radius: 8px;
+
+      span {
+        cursor: pointer;
+      }
+
+      :not(:first-child) {
+        margin-top: 0.5rem;
+      }
+    }
+  }
 }

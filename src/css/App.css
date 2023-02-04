@@ -62,6 +62,36 @@ a:focus-visible, a:focus-within, a:focus, a:active, a:target {
     padding: 0 calc(8rem + 5vw) 0;
   }
 }
+.header-container .header-wrapper {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  align-items: center;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  gap: 1rem;
+}
+.header-container .header-wrapper .menu-modal {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  top: 4rem;
+  right: 2rem;
+  background-color: #EFEAD6;
+  padding: 0.75rem;
+  border-radius: 8px;
+}
+.header-container .header-wrapper .menu-modal span {
+  cursor: pointer;
+}
+.header-container .header-wrapper .menu-modal :not(:first-child) {
+  margin-top: 0.5rem;
+}
 
 .cards-container-container {
   display: flex;
