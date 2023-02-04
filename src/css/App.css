@@ -17,24 +17,78 @@ a:focus-visible, a:focus-within, a:focus, a:active, a:target {
 }
 
 .login-container {
+  background-color: #f0f0f0;
+}
+.login-container header {
   padding: 0 1rem 0;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100vw;
+  height: 4rem;
+  background-color: #D4B889;
+  color: #0f0f0f;
 }
 @media only screen and (min-width: 600px) {
-  .login-container {
+  .login-container header {
     padding: 0 4rem 0;
   }
 }
 @media only screen and (min-width: 1024px) {
-  .login-container {
+  .login-container header {
     padding: 0 6rem 0;
   }
 }
 @media only screen and (min-width: 1280px) {
-  .login-container {
+  .login-container header {
     padding: 0 calc(8rem + 5vw) 0;
   }
+}
+.login-container header a {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.login-container .login-main {
+  padding: 0 1rem 0;
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 4rem);
+  align-items: center;
+  justify-content: center;
+}
+@media only screen and (min-width: 600px) {
+  .login-container .login-main {
+    padding: 0 4rem 0;
+  }
+}
+@media only screen and (min-width: 1024px) {
+  .login-container .login-main {
+    padding: 0 6rem 0;
+  }
+}
+@media only screen and (min-width: 1280px) {
+  .login-container .login-main {
+    padding: 0 calc(8rem + 5vw) 0;
+  }
+}
+.login-container .login-main .login-button {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin-top: 1rem;
+  gap: 0.5rem;
+  background-color: #B48456;
+  color: #f0f0f0;
+  padding: 0.5rem 0.75rem;
+  border-radius: 12px;
+  cursor: pointer;
 }
 
 .header-container {

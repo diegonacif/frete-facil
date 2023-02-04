@@ -1,5 +1,43 @@
 .login-container {
-  @include responsive-padding;
-  display: flex;
-  flex-direction: column;
+
+  background-color: $white-100;
+
+  header {
+    @include responsive-padding;
+    @include flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100vw;
+    height: 4rem;
+    background-color: $brown-500;
+    color: $black-900;
+
+    a {
+      @include flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+  
+  .login-main {
+    @include responsive-padding;
+    @include flex(column);
+    height: calc(100vh - 4rem);
+    align-items: center;
+    justify-content: center;
+
+    .login-button {
+      @include flex;
+      align-items: center;
+      justify-content: center;
+      width: fit-content;
+      margin-top: 1rem;
+      gap: 0.5rem;
+      background-color: $brown-700;
+      color: $white-100;
+      padding: 0.5rem 0.75rem;
+      border-radius: 12px;
+      cursor: pointer;
+    }
+  }
 }
