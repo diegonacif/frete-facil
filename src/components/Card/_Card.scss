@@ -16,6 +16,9 @@
   box-shadow: 0px 4px 8px 1px rgba(0,0,0,0.2);
 
   .card-img-wrapper {
+    width: fit-content;
+    height: fit-content;
+
     .card-img {
       width: 100%;
       aspect-ratio: 1/1;
@@ -25,6 +28,7 @@
   .card-info-wrapper {
     @include flex(column);
     margin-left: 0.75rem;
+    height: min-content;
 
     :first-child {
       justify-content: space-between;

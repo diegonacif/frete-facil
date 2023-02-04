@@ -169,6 +169,14 @@ a:focus-visible, a:focus-within, a:focus, a:active, a:target {
 .card-container:not(:first-child) {
   margin-top: 1rem;
 }
+.card-container .card-img-wrapper {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+}
 .card-container .card-img-wrapper .card-img {
   width: 100%;
   aspect-ratio: 1/1;
@@ -177,6 +185,9 @@ a:focus-visible, a:focus-within, a:focus, a:active, a:target {
   display: flex;
   flex-direction: column;
   margin-left: 0.75rem;
+  height: -webkit-min-content;
+  height: -moz-min-content;
+  height: min-content;
 }
 .card-container .card-info-wrapper :first-child {
   justify-content: space-between;
