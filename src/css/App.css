@@ -155,6 +155,7 @@ a:focus-visible, a:focus-within, a:focus, a:active, a:target {
 }
 
 .card-container {
+  position: relative;
   display: grid;
   grid-template-columns: 10rem auto;
   width: 100%;
@@ -193,7 +194,7 @@ a:focus-visible, a:focus-within, a:focus, a:active, a:target {
   justify-content: space-between;
 }
 .card-container .card-info-wrapper :not(:first-child) {
-  margin-top: 0.25rem;
+  margin-top: 0.5rem;
 }
 .card-container .card-info-wrapper .card-row {
   display: flex;
@@ -204,6 +205,37 @@ a:focus-visible, a:focus-within, a:focus, a:active, a:target {
   margin-left: 0.25rem;
   margin-top: 0;
 }
-.card-container .person-img {
+.card-container .card-info-wrapper .card-row .person-img {
   width: 2.5rem;
+}
+.card-container .b-side {
+  display: flex;
+  flex-direction: column;
+  margin-left: 0.75rem;
+  height: -webkit-min-content;
+  height: -moz-min-content;
+  height: min-content;
+}
+.card-container .b-side :not(:first-child) {
+  margin-top: 0.5rem;
+}
+.card-container .b-side .card-row {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.card-container .b-side .card-row :not(:first-child) {
+  margin-top: 0.5rem;
+}
+.card-container .b-side .card-row textarea {
+  border: 0;
+  resize: none;
+  width: 100%;
+  height: 6.5rem;
+}
+.card-container svg {
+  position: absolute;
+  bottom: 1rem;
+  right: 1.25rem;
+  cursor: pointer;
 }/*# sourceMappingURL=App.css.map */
