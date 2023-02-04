@@ -71,21 +71,44 @@ a:focus-visible, a:focus-within, a:focus, a:active, a:target {
 }
 
 .card-container {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 10rem auto;
   width: 100%;
   height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
   max-width: 30rem;
   padding: 0.75rem;
-  row-gap: 0.25rem;
   border-radius: 12px;
   box-shadow: 0px 4px 8px 1px rgba(0, 0, 0, 0.2);
 }
-.card-container:not(:first-of-type) {
+.card-container:not(:first-child) {
   margin-top: 1rem;
 }
-.card-container img {
+.card-container .card-img-wrapper .card-img {
+  width: 100%;
+  aspect-ratio: 1/1;
+}
+.card-container .card-info-wrapper {
+  display: flex;
+  flex-direction: column;
+  margin-left: 0.75rem;
+}
+.card-container .card-info-wrapper :first-child {
+  justify-content: space-between;
+}
+.card-container .card-info-wrapper :not(:first-child) {
+  margin-top: 0.25rem;
+}
+.card-container .card-info-wrapper .card-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.card-container .card-info-wrapper .card-row :not(:first-child) {
+  margin-left: 0.25rem;
+  margin-top: 0;
+}
+.card-container .person-img {
   width: 2.5rem;
 }/*# sourceMappingURL=App.css.map */
