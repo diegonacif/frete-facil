@@ -17,6 +17,7 @@
       border: 0;
       padding: 0 0.5rem;
       box-shadow: 0px 3px 6px 1px rgba(0,0,0,0.2);
+      font-size: 1rem;
 
       &:first-of-type {
         margin-top: 1rem;
@@ -27,6 +28,19 @@
       }
     }
 
+    textarea {
+      width: 100%;
+      max-width: 20rem;
+      height: 4.5rem;
+      border-radius: 8px;
+      border: 0;
+      padding: 0 0.5rem;
+      box-shadow: 0px 3px 6px 1px rgba(0,0,0,0.2);
+      margin-top: 0.5rem;
+      resize: none;
+      overflow: auto;
+    }
+
     button {
       height: 1.75rem;
       width: 6rem;
@@ -34,6 +48,7 @@
       border: 0;
       border-radius: 8px;
       background-color: $brown-500;
+      cursor: pointer;
     }
 
     .image-input-wrapper {
@@ -44,7 +59,9 @@
       max-width: 20rem;
 
       // input[type="file"] {
-      //   height: 10rem;
+      //   button {
+      //     background-color: blue;
+      //   }
       // }
     }
 

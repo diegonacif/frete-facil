@@ -89,6 +89,7 @@ export const Management = () => {
       phone: watch("phoneNumber"),
       size: watch("vehicleSize"),
       isCovered: watch("covered"),
+      additionalInfo: watch("additionalInfo"),
       imgUrl: imageUrl,
     })
     .then(
@@ -109,6 +110,7 @@ export const Management = () => {
       phone: watch("phoneNumber"),
       size: watch("vehicleSize"),
       isCovered: watch("covered"),
+      additionalInfo: watch("additionalInfo"),
       imgUrl: imageUrl,
     })
     .then(
@@ -130,6 +132,7 @@ export const Management = () => {
       setValue("phoneNumber", users[currentId]?.phone)
       setValue("vehicleSize", users[currentId]?.size)
       setValue("covered", users[currentId]?.isCovered)
+      setValue("additionalInfo", users[currentId]?.additionalInfo)
     }
     getCurrentData();
   }, [firestoreLoading])
@@ -163,8 +166,7 @@ export const Management = () => {
             placeholder="coberto..." 
             {...register("covered")}
           />
-          <input 
-            type="text" 
+          <textarea 
             placeholder="informações adicionais..." 
             {...register("additionalInfo")}
           />

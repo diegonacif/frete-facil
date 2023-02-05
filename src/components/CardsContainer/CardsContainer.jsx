@@ -40,6 +40,7 @@ export const CardsContainer = () => {
               category={user.size}
               covered={user.isCovered}
               imgUrl={user.imgUrl}
+              additionalInfo={user.additionalInfo}
             />
           )
         })

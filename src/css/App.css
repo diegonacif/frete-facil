@@ -127,12 +127,25 @@ a:focus-visible, a:focus-within, a:focus, a:active, a:target {
   border: 0;
   padding: 0 0.5rem;
   box-shadow: 0px 3px 6px 1px rgba(0, 0, 0, 0.2);
+  font-size: 1rem;
 }
 .management-container .management-content input:first-of-type {
   margin-top: 1rem;
 }
 .management-container .management-content input:not(:first-of-type) {
   margin-top: 0.5rem;
+}
+.management-container .management-content textarea {
+  width: 100%;
+  max-width: 20rem;
+  height: 4.5rem;
+  border-radius: 8px;
+  border: 0;
+  padding: 0 0.5rem;
+  box-shadow: 0px 3px 6px 1px rgba(0, 0, 0, 0.2);
+  margin-top: 0.5rem;
+  resize: none;
+  overflow: auto;
 }
 .management-container .management-content button {
   height: 1.75rem;
@@ -141,6 +154,7 @@ a:focus-visible, a:focus-within, a:focus, a:active, a:target {
   border: 0;
   border-radius: 8px;
   background-color: #D4B889;
+  cursor: pointer;
 }
 .management-container .management-content .image-input-wrapper {
   display: flex;

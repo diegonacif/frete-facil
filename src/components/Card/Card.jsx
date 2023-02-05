@@ -3,9 +3,9 @@ import placeholderImg from '../../assets/image-placeholder.png';
 import { BsArrowCounterclockwise } from 'react-icons/bs';
 import { useState } from 'react';
 
-export const Card = ({ displayName, phone, category, covered, imgUrl }) => {
+export const Card = ({ displayName, phone, category, covered, imgUrl, additionalInfo }) => {
   const [sideState, setSideState] = useState(true);
-  console.log(imgUrl ? true : false);
+  // console.log(imgUrl ? true : false);
 
   return (
     <div className="card-container">
@@ -41,7 +41,7 @@ export const Card = ({ displayName, phone, category, covered, imgUrl }) => {
           <div className="b-side">
             <div className="card-row">
               <span>Informações adicionais:</span>
-              <textarea readOnly>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos sint in voluptas rerum doloremque quisquam tempora, voluptate porro provident nemo id quidem, earum quis ea, labore modi ipsum non ad?</textarea>
+              <textarea readOnly value={additionalInfo}></textarea>
             </div>
           </div>
         </>
