@@ -36,7 +36,7 @@ export const Card = ({ displayName, phone, category, covered, imgUrl }) => {
         </> :
         <>
           <div className="card-img-wrapper">
-            <img className="card-img" src={placeholderImg} alt="" />
+            <img className="card-img" src={imgUrl ? imgUrl : placeholderImg} alt="" />
           </div>
           <div className="b-side">
             <div className="card-row">
