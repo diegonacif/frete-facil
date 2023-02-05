@@ -34,7 +34,7 @@ export const Header = () => {
 
   return (
     <div className="header-container">
-      <h2>Frete Fácil</h2>
+      <Link to="/" id="main-title">Frete Fácil</Link>
       {
         isLoading ?
         <span>Loading...</span> :

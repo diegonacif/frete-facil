@@ -1,13 +1,13 @@
 .management-container {
   @include flex(column);
   background-color: $white-100;
-  height: 100vh;
+  min-height: 100vh;
   
   .management-content {
     @include flex(column);
-    @include responsive-padding;
+    @include responsive-padding(3rem, 1.5rem);
     align-items: center;
-    margin-top: 3rem;
+    // margin-top: 3rem;
 
     input {
       width: 100%;

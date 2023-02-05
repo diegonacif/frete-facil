@@ -95,28 +95,27 @@ a:focus-visible, a:focus-within, a:focus, a:active, a:target {
   display: flex;
   flex-direction: column;
   background-color: #f0f0f0;
-  height: 100vh;
+  min-height: 100vh;
 }
 .management-container .management-content {
   display: flex;
   flex-direction: column;
-  padding: 0 1rem 0;
+  padding: 3rem 1rem 1.5rem;
   align-items: center;
-  margin-top: 3rem;
 }
 @media only screen and (min-width: 600px) {
   .management-container .management-content {
-    padding: 0 4rem 0;
+    padding: 3rem 4rem 1.5rem;
   }
 }
 @media only screen and (min-width: 1024px) {
   .management-container .management-content {
-    padding: 0 6rem 0;
+    padding: 3rem 6rem 1.5rem;
   }
 }
 @media only screen and (min-width: 1280px) {
   .management-container .management-content {
-    padding: 0 calc(8rem + 5vw) 0;
+    padding: 3rem calc(8rem + 5vw) 1.5rem;
   }
 }
 .management-container .management-content input {
@@ -194,6 +193,9 @@ a:focus-visible, a:focus-within, a:focus, a:active, a:target {
   .header-container {
     padding: 0 calc(8rem + 5vw) 0;
   }
+}
+.header-container a#main-title {
+  font-size: 1.625rem;
 }
 .header-container .header-wrapper {
   display: flex;

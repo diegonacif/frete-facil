@@ -7,6 +7,10 @@
   height: 4rem;
   background-color: $brown-500;
 
+  a#main-title {
+    font-size: 1.625rem;
+  }
+
   .header-wrapper {
     @include flex;
     position: relative;
