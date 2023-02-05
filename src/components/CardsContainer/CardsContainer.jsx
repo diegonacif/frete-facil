@@ -1,3 +1,4 @@
+import { getAuth } from "firebase/auth";
 import { collection, getDocs } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { useCollection } from "react-firebase-hooks/firestore";
@@ -6,8 +7,31 @@ import { Card } from "../Card/Card"
 
 export const CardsContainer = () => {
   const usersCollectionRef = collection(db, "users");
-  const [users, setUsers] = useState({})
+  const [users, setUsers] = useState({});
   const [firestoreLoading, setFirestoreLoading] = useState(true);
+
+  console.log(users)
+
+  // All users data
+  // useEffect(() => {
+  //   getAuth()
+  // .getUsers()
+  // .then((getUsersResult) => {
+  //   console.log('Successfully fetched user data:');
+  //   getUsersResult.users.forEach((userRecord) => {
+  //     console.log(userRecord);
+  //   });
+
+  //   console.log('Unable to find users corresponding to these identifiers:');
+  //   getUsersResult.notFound.forEach((userIdentifier) => {
+  //     console.log(userIdentifier);
+  //   });
+  // })
+  // .catch((error) => {
+  //   console.log('Error fetching user data:', error);
+  // });
+
+  // }, [])
 
   // Users Data
   useEffect(() => {
@@ -35,12 +59,14 @@ export const CardsContainer = () => {
           return (
             <Card
               key={user.id}
+              id={user.id}
               displayName={user.displayName}
               phone={user.phone}
               category={user.size}
               covered={user.isCovered}
               imgUrl={user.imgUrl}
               additionalInfo={user.additionalInfo}
+              profileImgUrl={user.profileImgUrl}
             />
           )
         })

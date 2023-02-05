@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from "react";
-import { GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged } from 'firebase/auth'
+import { GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged, getAuth } from 'firebase/auth'
 import { auth, db } from '../services/firebase';
 import { collection, getDocs, setDoc, addDoc, updateDoc, deleteDoc, doc } from 'firebase/firestore';
 import { useAuthState } from 'react-firebase-hooks/auth';
@@ -12,28 +12,13 @@ export const AuthGoogleProvider = ({ children }) => {
   const [user, setUser] = useState({});
   const [users, setUsers] = useState({});
   const [userId, setUserId] = useState("");
+  const [userPhotoUrl, setUserPhotoUrl] = useState("");
 
   const [isLoading, setIsLoading] = useState(true);
   const [isSignedIn, setIsSignedIn] = useState(false);
 
   const usersCollectionRef = collection(db, "users");
-
-  // function userAlreadyExists() {
-  //   if(users.find(data => data.id === userId)) {
-  //     return true;
-  //   } else {
-  //     return false;
-  //   }
-  // }
-
-  useEffect(() => {
-    const getUsers = async () => {
-      const data = await getDocs(usersCollectionRef);
-      setUsers(data.docs.map(doc => doc.id));
-    }
-    getUsers();
-  }, [])
-
+  
   const [userState, loading, error] = useAuthState(auth);
 
   onAuthStateChanged(auth, (currentUser) => {
@@ -47,19 +32,6 @@ export const AuthGoogleProvider = ({ children }) => {
       setIsLoading(false);
     }
   })
-
-  // User Data
-  // useEffect(() => {
-  //   if(user === {}) {
-  //     return;
-  //   } else {
-  //     const getUsers = async () => {
-  //       const data = await getDocs(usersCollectionRef);
-  //       setUsers(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-  //     }
-  //     getUsers();
-  //   }
-  // }, [])
 
   useEffect(() => {
     const loadStoreAuth = () => {
@@ -80,15 +52,6 @@ export const AuthGoogleProvider = ({ children }) => {
       const credential = GoogleAuthProvider.credentialFromResult(result);
       const token = credential.accessToken;
       const user = result.user;
-      // setUserId(result.user.uid)
-
-      // const docRef = doc(db, "users", result.user.uid);
-
-      // setDoc(docRef, {});
-
-      // setUser(user);
-      // sessionStorage.setItem("@AuthFirebase:token", token);
-      // sessionStorage.setItem("@AuthFirebase:user", JSON.stringify(user));
     })
     .catch((error) => {
       const errorCode = error.code;
@@ -100,9 +63,13 @@ export const AuthGoogleProvider = ({ children }) => {
 
   function handleGoogleSignOut() {
     sessionStorage.clear();
-    // setUser(null);
     signOut(auth).then(() => console.log("sign out sucessfully"));
   }
+
+  // Current user Photo URL
+  useEffect(() => {
+    setUserPhotoUrl(user?.photoURL);
+  }, [user])
 
   return (
     <AuthGoogleContext.Provider value={{ 
@@ -112,7 +79,8 @@ export const AuthGoogleProvider = ({ children }) => {
       isSignedIn,
       userId,
       signed: !!user, 
-      user 
+      user,
+      userPhotoUrl
     }}>
       {children}
     </AuthGoogleContext.Provider>

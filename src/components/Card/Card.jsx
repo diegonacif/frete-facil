@@ -3,9 +3,9 @@ import placeholderImg from '../../assets/image-placeholder.png';
 import { BsArrowCounterclockwise } from 'react-icons/bs';
 import { useState } from 'react';
 
-export const Card = ({ displayName, phone, category, covered, imgUrl, additionalInfo }) => {
+export const Card = ({ displayName, phone, category, covered, imgUrl, additionalInfo, id, profileImgUrl }) => {
   const [sideState, setSideState] = useState(true);
-  // console.log(imgUrl ? true : false);
+  // console.log(id)
 
   return (
     <div className="card-container">
@@ -18,7 +18,7 @@ export const Card = ({ displayName, phone, category, covered, imgUrl, additional
           <div className="card-info-wrapper">
             <div className="card-row">
               <span>{displayName}</span>
-              <img className="person-img" src={personImg} alt="" />
+              <img className="person-img" src={profileImgUrl ? profileImgUrl : personImg} alt="" />
             </div>
             <div className="card-row">
               <span>Telefone:</span>

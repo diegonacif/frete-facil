@@ -14,7 +14,7 @@ export const Management = () => {
   const [users, setUsers] = useState({})
   const [alreadyRegistered, setAlreadyRegistered] = useState(false)
   const [firestoreLoading, setFirestoreLoading] = useState(true);
-  const { userId } = useContext(AuthGoogleContext);
+  const { userId, userPhotoUrl } = useContext(AuthGoogleContext);
   const [refresh, setRefresh] = useState(false);
 
   const IdsArray = firestoreLoading ? [] : users?.map((user) => user.id)
@@ -90,6 +90,7 @@ export const Management = () => {
       size: watch("vehicleSize"),
       isCovered: watch("covered"),
       additionalInfo: watch("additionalInfo"),
+      profileImgUrl: userPhotoUrl,
       imgUrl: imageUrl,
     })
     .then(
@@ -111,6 +112,7 @@ export const Management = () => {
       size: watch("vehicleSize"),
       isCovered: watch("covered"),
       additionalInfo: watch("additionalInfo"),
+      profileImgUrl: userPhotoUrl,
       imgUrl: imageUrl,
     })
     .then(
