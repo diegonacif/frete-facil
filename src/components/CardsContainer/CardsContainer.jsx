@@ -10,29 +10,6 @@ export const CardsContainer = () => {
   const [users, setUsers] = useState({});
   const [firestoreLoading, setFirestoreLoading] = useState(true);
 
-  console.log(users)
-
-  // All users data
-  // useEffect(() => {
-  //   getAuth()
-  // .getUsers()
-  // .then((getUsersResult) => {
-  //   console.log('Successfully fetched user data:');
-  //   getUsersResult.users.forEach((userRecord) => {
-  //     console.log(userRecord);
-  //   });
-
-  //   console.log('Unable to find users corresponding to these identifiers:');
-  //   getUsersResult.notFound.forEach((userIdentifier) => {
-  //     console.log(userIdentifier);
-  //   });
-  // })
-  // .catch((error) => {
-  //   console.log('Error fetching user data:', error);
-  // });
-
-  // }, [])
-
   // Users Data
   useEffect(() => {
     const getUsers = async () => {
