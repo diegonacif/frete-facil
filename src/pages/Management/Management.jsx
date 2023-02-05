@@ -23,8 +23,20 @@ export const Management = () => {
   const [imageUrl, setImageUrl] = useState("");
   // console.log(imageUrl, userId);
 
+  // // Upload image
+  // const uploadFile = () => {
+  //   if (imageUpload == null) return;
+  //   const imageRef = ref(storage, `${userId}/vehiclePicture`);
+  //   uploadBytes(imageRef, imageUpload).then((snapshot) => {
+  //     getDownloadURL(snapshot.ref).then((url) => {
+  //       setImageUrl(url);
+  //     });
+  //   })
+  // }
+
+
   // Upload image
-  const uploadFile = () => {
+  useEffect(() => {
     if (imageUpload == null) return;
     const imageRef = ref(storage, `${userId}/vehiclePicture`);
     uploadBytes(imageRef, imageUpload).then((snapshot) => {
@@ -32,7 +44,7 @@ export const Management = () => {
         setImageUrl(url);
       });
     })
-  }
+  }, [imageUpload])
 
   // Load image
   useEffect(() => {
@@ -89,9 +101,10 @@ export const Management = () => {
       phone: watch("phoneNumber"),
       size: watch("vehicleSize"),
       isCovered: watch("covered"),
+      location: watch("location"),
       additionalInfo: watch("additionalInfo"),
       profileImgUrl: userPhotoUrl,
-      imgUrl: imageUrl,
+      imgUrl: imageUrl ? imageUrl : "" ,
     })
     .then(
       setRefresh((current) => !current),
@@ -111,9 +124,10 @@ export const Management = () => {
       phone: watch("phoneNumber"),
       size: watch("vehicleSize"),
       isCovered: watch("covered"),
+      location: watch("location"),
       additionalInfo: watch("additionalInfo"),
       profileImgUrl: userPhotoUrl,
-      imgUrl: imageUrl,
+      imgUrl: imageUrl ? imageUrl : "",
     })
     .then(
       setRefresh((current) => !current),
@@ -134,10 +148,23 @@ export const Management = () => {
       setValue("phoneNumber", users[currentId]?.phone)
       setValue("vehicleSize", users[currentId]?.size)
       setValue("covered", users[currentId]?.isCovered)
+      setValue("location", users[currentId]?.location)
       setValue("additionalInfo", users[currentId]?.additionalInfo)
     }
     getCurrentData();
   }, [firestoreLoading])
+
+  function handleSumbmit(method) {
+    if(method === "create") {
+      uploadFile()
+      registerUser()
+    } else {
+      uploadFile()
+      registerUser()
+    }
+  }
+
+  // console.log(imageUrl);
 
   return (
     <div className="management-container">
@@ -168,6 +195,11 @@ export const Management = () => {
             placeholder="coberto..." 
             {...register("covered")}
           />
+          <input 
+            type="text" 
+            placeholder="cidade / estado..." 
+            {...register("location")}
+          />
           <textarea 
             placeholder="informações adicionais..." 
             {...register("additionalInfo")}
@@ -180,13 +212,13 @@ export const Management = () => {
                 setImageUpload(event.target.files[0]);
               }}
             />
-            <button onClick={uploadFile}>upload</button>
+            {/* <button onClick={uploadFile}>Enviar</button> */}
           </div>
           <img src={imageUrl} alt="" />
           
-          <button onClick={() => updateUser()}>Atualizar</button>
+          <button onClick={() => updateUser()}>Feito</button>
         </div> :
-        <>
+        <div className="management-content">
           <input 
             type="text" 
             placeholder="nome..." 
@@ -209,6 +241,10 @@ export const Management = () => {
           />
           <input 
             type="text" 
+            placeholder="cidade / estado..." 
+            {...register("location")}
+          />
+          <textarea 
             placeholder="informações adicionais..." 
             {...register("additionalInfo")}
           />
@@ -220,12 +256,12 @@ export const Management = () => {
                 setImageUpload(event.target.files[0]);
               }}
             />
-            <button onClick={uploadFile}>upload</button>
+            {/* <button onClick={uploadFile}>Enviar</button> */}
           </div>
           <img src={imageUrl} alt="" />
           
-          <button onClick={() => registerUser()}>Registrar</button>
-        </>
+          <button onClick={() => registerUser()}>Feito</button>
+        </div>
       }
     </div>
   )

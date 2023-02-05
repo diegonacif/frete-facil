@@ -42,15 +42,20 @@
     }
 
     :not(:first-child) {
-      margin-top: 0.5rem;
+      margin-top: 0.25rem;
     }
 
     .card-row {
       @include flex;
       align-items: center;
 
+      &:first-of-type {
+        margin-bottom: 0.25rem;
+        font-size: 1.125rem;
+      }
+
       :not(:first-child) {
-        margin-left: 0.25rem;
+        margin-left: 0.5rem;
         margin-top: 0;
       }
 
@@ -89,7 +94,7 @@
     }
   }
 
-  svg {
+  #svg-turn {
     position: absolute;
     bottom: 1rem;
     right: 1.25rem;

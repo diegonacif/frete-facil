@@ -41,6 +41,7 @@ export const CardsContainer = () => {
               phone={user.phone}
               category={user.size}
               covered={user.isCovered}
+              location={user.location}
               imgUrl={user.imgUrl}
               additionalInfo={user.additionalInfo}
               profileImgUrl={user.profileImgUrl}
