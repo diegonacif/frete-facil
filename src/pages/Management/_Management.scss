@@ -35,5 +35,23 @@
       border-radius: 8px;
       background-color: $brown-500;
     }
+
+    .image-input-wrapper {
+      @include flex;
+      align-items: center;
+      gap: 0.5rem;
+      width: 100%;
+      max-width: 20rem;
+
+      // input[type="file"] {
+      //   height: 10rem;
+      // }
+    }
+
+    img {
+      max-width: 20rem;
+      margin-top: 1rem;
+      border-radius: 8px;
+    }
   }
 }

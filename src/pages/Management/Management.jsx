@@ -1,8 +1,9 @@
 import { collection, doc, getDocs, setDoc, updateDoc } from "firebase/firestore";
 import { useContext, useEffect, useState } from "react";
 import { AuthGoogleContext } from "../../contexts/AuthGoogleProvider";
-import { db } from '../../services/firebase';
+import { db, storage } from '../../services/firebase';
 import { useCollection } from 'react-firebase-hooks/firestore';
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { useForm } from 'react-hook-form';
 import { Header } from '../../components/Header/Header';
 
@@ -17,6 +18,27 @@ export const Management = () => {
   const [refresh, setRefresh] = useState(false);
 
   const IdsArray = firestoreLoading ? [] : users?.map((user) => user.id)
+
+  const [imageUpload, setImageUpload] = useState(null);
+  const [imageUrl, setImageUrl] = useState("");
+  // console.log(imageUrl, userId);
+
+  // Upload image
+  const uploadFile = () => {
+    if (imageUpload == null) return;
+    const imageRef = ref(storage, `${userId}/vehiclePicture`);
+    uploadBytes(imageRef, imageUpload).then((snapshot) => {
+      getDownloadURL(snapshot.ref).then((url) => {
+        setImageUrl(url);
+      });
+    })
+  }
+
+  // Load image
+  useEffect(() => {
+    const currentId = IdsArray?.indexOf(userId)
+    setImageUrl(users[currentId]?.imgUrl)
+  }, [firestoreLoading])
 
   // Hook Form Controller
   const {
@@ -43,6 +65,7 @@ export const Management = () => {
       setUsers(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     }
     getUsers();
+    
   }, [refresh])
 
    // Already Exists ?
@@ -66,10 +89,14 @@ export const Management = () => {
       phone: watch("phoneNumber"),
       size: watch("vehicleSize"),
       isCovered: watch("covered"),
+      imgUrl: imageUrl,
     })
     .then(
       setRefresh((current) => !current),
-      console.log("Registered")
+      console.log("Registered"),
+      setTimeout(() => {
+        window.location.replace("/")
+      }, 600)
     )
   }
 
@@ -82,6 +109,7 @@ export const Management = () => {
       phone: watch("phoneNumber"),
       size: watch("vehicleSize"),
       isCovered: watch("covered"),
+      imgUrl: imageUrl,
     })
     .then(
       setRefresh((current) => !current),
@@ -140,6 +168,17 @@ export const Management = () => {
             placeholder="informações adicionais..." 
             {...register("additionalInfo")}
           />
+
+          <div className="image-input-wrapper">
+            <input
+              type="file"
+              onChange={(event) => {
+                setImageUpload(event.target.files[0]);
+              }}
+            />
+            <button onClick={uploadFile}>upload</button>
+          </div>
+          <img src={imageUrl} alt="" />
           
           <button onClick={() => updateUser()}>Atualizar</button>
         </div> :
@@ -169,6 +208,17 @@ export const Management = () => {
             placeholder="informações adicionais..." 
             {...register("additionalInfo")}
           />
+
+          <div className="image-input-wrapper">
+            <input
+              type="file"
+              onChange={(event) => {
+                setImageUpload(event.target.files[0]);
+              }}
+            />
+            <button onClick={uploadFile}>upload</button>
+          </div>
+          <img src={imageUrl} alt="" />
           
           <button onClick={() => registerUser()}>Registrar</button>
         </>
