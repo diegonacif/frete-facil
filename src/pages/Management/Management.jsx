@@ -60,6 +60,9 @@ export const Management = () => {
     getValues
   } = useForm({
     mode: "all",
+    defaultValues: {
+      vehicleSize: "",
+    }
   });
   
   // Firestore loading
@@ -102,7 +105,7 @@ export const Management = () => {
       size: watch("vehicleSize"),
       isCovered: watch("covered"),
       location: watch("location"),
-      additionalInfo: watch("additionalInfo"),
+      additionalInfo: watch("additionalInfo") === undefined ? "" : watch("additionalInfo"),
       profileImgUrl: userPhotoUrl,
       imgUrl: imageUrl ? imageUrl : "" ,
     })
@@ -154,17 +157,25 @@ export const Management = () => {
     getCurrentData();
   }, [firestoreLoading])
 
-  function handleSumbmit(method) {
-    if(method === "create") {
-      uploadFile()
-      registerUser()
+  // Validation
+  const [isButtonActive, setIsButtonActive] = useState(false);
+  useEffect(() => {
+    if (
+      watch("displayName") === "" || watch("displayName") === undefined || 
+      watch("phoneNumber") === "" || watch("phoneNumber") === undefined || 
+      watch("vehicleSize") === "" || watch("vehicleSize") === undefined ||
+      watch("covered") === "" ||  watch("covered") === undefined ||
+      watch("location") === "" || watch("location") === undefined
+    ) {
+      setIsButtonActive(false)
     } else {
-      uploadFile()
-      registerUser()
+      setIsButtonActive(true)
     }
-  }
+  }, [watch()])
 
-  // console.log(imageUrl);
+  // console.log(watch("additionalInfo"));
+  console.log(isButtonActive);
+
 
   return (
     <div className="management-container">
@@ -185,16 +196,35 @@ export const Management = () => {
             placeholder="telefone..." 
             {...register("phoneNumber")}
           />
-          <input 
+          {/* <input 
             type="text" 
             placeholder="tamanho do veículo..." 
             {...register("vehicleSize")}
-          />
-          <input 
+          /> */}
+          <select 
+            name="vehicleSize" 
+            id="vehicleSize"
+            {...register("vehicleSize")}
+          >
+            <option value="" disabled>Selecione</option>
+            <option value="Veículo pequeno">Veículo pequeno</option>
+            <option value="Veículo médio">Veículo médio</option>
+            <option value="Veículo grande">Veículo grande</option>
+          </select>
+          {/* <input 
             type="text" 
             placeholder="coberto..." 
             {...register("covered")}
-          />
+          /> */}
+          <select 
+            name="covered" 
+            id="covered"
+            {...register("covered")}
+          >
+            <option value="" disabled>Selecione</option>
+            <option value="Não coberto">Não coberto</option>
+            <option value="Coberto">Coberto</option>
+          </select>
           <input 
             type="text" 
             placeholder="cidade / estado..." 
@@ -216,32 +246,49 @@ export const Management = () => {
           </div>
           <img src={imageUrl} alt="" />
           
-          <button onClick={() => updateUser()}>Feito</button>
+          {/* <button onClick={() => updateUser()}>Feito</button> */}
+          <button 
+            onClick={() => updateUser()}
+            disabled={isButtonActive ? "" : "disabled"}
+          >
+            Feito
+          </button>
         </div> :
         <div className="management-content">
           <input 
             type="text" 
-            placeholder="nome..." 
+            placeholder="Nome..." 
             {...register("displayName")}
           />
           <input 
             type="text" 
-            placeholder="telefone..." 
+            placeholder="Telefone..." 
             {...register("phoneNumber")}
           />
-          <input 
-            type="text" 
-            placeholder="tamanho do veículo..." 
+          <select 
+            name="vehicleSize" 
+            id="vehicleSize"
             {...register("vehicleSize")}
-          />
-          <input 
-            type="text" 
-            placeholder="coberto..." 
+            className={ watch("vehicleSize") === "" || watch("vehicleSize") === undefined ? "blank-select" : "black-select" }
+          >
+            <option value="" disabled>Tamanho do veículo...</option>
+            <option value="Veículo pequeno">Veículo pequeno</option>
+            <option value="Veículo médio">Veículo médio</option>
+            <option value="Veículo grande">Veículo grande</option>
+          </select>
+          <select 
+            name="covered" 
+            id="covered"
             {...register("covered")}
-          />
+            className={ watch("covered") === "" || watch("covered") === undefined ? "blank-select" : "black-select" }
+          >
+            <option value="" disabled>Cobertura...</option>
+            <option value="Não coberto">Não coberto</option>
+            <option value="Coberto">Coberto</option>
+          </select>
           <input 
             type="text" 
-            placeholder="cidade / estado..." 
+            placeholder="Cidade / estado..." 
             {...register("location")}
           />
           <textarea 
@@ -260,7 +307,12 @@ export const Management = () => {
           </div>
           <img src={imageUrl} alt="" />
           
-          <button onClick={() => registerUser()}>Feito</button>
+          <button 
+            onClick={() => registerUser()}
+            disabled={isButtonActive ? "" : "disabled"}
+          >
+            Feito
+          </button>
         </div>
       }
     </div>

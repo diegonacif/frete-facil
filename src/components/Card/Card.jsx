@@ -4,7 +4,7 @@ import { BsArrowCounterclockwise } from 'react-icons/bs';
 import { BiPhoneCall } from 'react-icons/bi';
 import { GrLocation } from 'react-icons/gr';
 import { FiTruck } from 'react-icons/fi';
-import { AiOutlineCloseCircle } from 'react-icons/ai';
+import { AiOutlineCloseCircle, AiOutlineCheckCircle } from 'react-icons/ai';
 import { useState } from 'react';
 
 export const Card = ({ displayName, phone, category, covered, imgUrl, additionalInfo, id, profileImgUrl, location }) => {
@@ -41,7 +41,11 @@ export const Card = ({ displayName, phone, category, covered, imgUrl, additional
             </div>
             <div className="card-row">
               {/* <span>É coberto:</span> */}
-              <AiOutlineCloseCircle size="1.25rem" />
+              {
+                covered === "Coberto" ?
+                <AiOutlineCheckCircle size="1.25rem" /> :
+                <AiOutlineCloseCircle size="1.25rem" />
+              }
               <span>{covered}</span>
             </div>
           </div>
