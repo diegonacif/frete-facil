@@ -17,7 +17,7 @@ export const Login = () => {
 
   // Back to main page when logged in
   useEffect(() => {
-    isSignedIn ? navigate("/") : null;
+    isSignedIn ? navigate("/management") : null;
   }, [isSignedIn])
 
   async function loginGoogle() {
