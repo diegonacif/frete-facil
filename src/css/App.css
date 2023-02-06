@@ -248,6 +248,17 @@ a:focus-visible, a:focus-within, a:focus, a:active, a:target {
 .header-container .header-wrapper .menu-modal :not(:first-child) {
   margin-top: 0.75rem;
 }
+.header-container a#main-button {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: rgba(255, 255, 255, 0.15);
+  padding: 0.25rem 0.425rem;
+  border-radius: 4px;
+  outline: 2px solid #B48456;
+  color: #0f0f0f;
+}
 
 .cards-container-container {
   display: flex;

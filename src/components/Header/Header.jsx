@@ -2,6 +2,7 @@ import { useContext, useRef, useState } from "react";
 import { Link } from "react-router-dom"
 import { AuthGoogleContext } from "../../contexts/AuthGoogleProvider";
 
+import { GrAnnounce } from 'react-icons/gr';
 import { useOnClickOutside } from 'usehooks-ts' // Outside Click (Hook)
 import { useTransition, animated } from '@react-spring/web'; // Conditional Rendering Transition Lib
 import { Twirl as Hamburguer } from 'hamburger-react'; // Hamburguer Menu Button with Animation
@@ -65,7 +66,10 @@ export const Header = () => {
             )
           }
         </div> :
-        <Link to="/login">Sou Freteiro</Link>
+        <Link to="/login" id="main-button">
+          Quero anunciar
+          <GrAnnounce size="1rem" />
+        </Link>
       }
     </div>
   )
