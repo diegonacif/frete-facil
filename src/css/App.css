@@ -327,9 +327,12 @@ a:focus-visible, a:focus-within, a:focus, a:active, a:target {
 .card-container .card-info-wrapper .card-row :not(:first-child) {
   margin-left: 0.5rem;
   margin-top: 0;
+  min-width: 6rem;
+  overflow: hidden;
 }
 .card-container .card-info-wrapper .card-row .person-img {
   width: 2.5rem;
+  min-width: 2.5rem;
   border-radius: 8px;
   outline: 2px solid #c2c2c2;
 }
@@ -360,7 +363,7 @@ a:focus-visible, a:focus-within, a:focus, a:active, a:target {
 }
 .card-container #svg-turn {
   position: absolute;
-  bottom: 1rem;
-  right: 1.25rem;
+  bottom: 0.5rem;
+  right: 0.75rem;
   cursor: pointer;
 }/*# sourceMappingURL=App.css.map */

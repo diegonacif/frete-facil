@@ -20,27 +20,23 @@ export const Card = ({ displayName, phone, category, covered, imgUrl, additional
             <img className="card-img" src={imgUrl ? imgUrl : placeholderImg} alt="" />
           </div>
           <div className="card-info-wrapper">
-            <div className="card-row">
+            <div className="card-row title-row">
               <span>{displayName}</span>
               <img className="person-img" src={profileImgUrl ? profileImgUrl : personImg} alt="" />
             </div>
             <div className="card-row">
-              {/* <span>Telefone:</span> */}
               <BiPhoneCall size="1.25rem" />
               <span>{phone}</span>
             </div>
             <div className="card-row">
-              {/* <span>Localização:</span> */}
               <GrLocation size="1.25rem" />
               <span>{location}</span>
             </div>
             <div className="card-row">
-              {/* <span>Tamanho do veículo:</span> */}
               <FiTruck size="1.25rem" />
               <span>{category}</span>
             </div>
             <div className="card-row">
-              {/* <span>É coberto:</span> */}
               {
                 covered === "Coberto" ?
                 <AiOutlineCheckCircle size="1.25rem" /> :
